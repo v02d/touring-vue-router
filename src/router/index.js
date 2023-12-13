@@ -22,6 +22,10 @@ const router = createRouter({
       name: 'event-details',
       props: true,
       component: () => import('../views/EventDetailsView.vue')
+    },
+    {
+      path: '*',
+      component: {template: 'page not found'}
     }
   ]
 })
