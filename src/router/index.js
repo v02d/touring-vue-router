@@ -24,8 +24,7 @@ const router = createRouter({
       component: () => import('@/views/EventDetailsView.vue')
     },
     {
-      path: '/404',
-      name: 'page-not-found',
+      path: '/:pathMatch(.*)',
       component: () => import('@/views/PageNotFound.vue')
     }
   ]
