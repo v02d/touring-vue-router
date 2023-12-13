@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EventListView from '@/views/EventListView.vue'
-import PageNotFound from "../views/PageNotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,8 +24,9 @@ const router = createRouter({
       component: () => import('@/views/EventDetailsView.vue')
     },
     {
-      path: '/:pathMatch(.*)',
-      component: PageNotFound
+      path: '/404',
+      name: 'page-not-found',
+      component: () => import('@/views/PageNotFound.vue')
     }
   ]
 })

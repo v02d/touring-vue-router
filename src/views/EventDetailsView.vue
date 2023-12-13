@@ -9,6 +9,7 @@
 
 <script setup>
 import {onMounted, ref} from 'vue'
+import {useRouter} from 'vue-router'
 import EventService from "../services/EventService.js";
 const props = defineProps({
   id: {
@@ -16,6 +17,8 @@ const props = defineProps({
     required: true
   }
 })
+const router = useRouter();
+
 const event = ref(null)
 
 onMounted(() => {
@@ -24,11 +27,10 @@ onMounted(() => {
         event.value = response.data
       })
       .catch((error) => {
-        console.log(error)
+        router.push('/404')
       })
 })
 </script>
-
 <style scoped>
 
 </style>
