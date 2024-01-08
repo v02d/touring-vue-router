@@ -12,10 +12,13 @@ const router = useRouter()
 const {event} = defineProps(['event'])
 
 const register = () => {
-  GStore.flashMessage = 'You are successfully registered for ' + event.title
-  setTimeout(() =>{
+  const stopTimeout = setTimeout(() =>{
     GStore.flashMessage = ''
   }, 3000)
+
+  if (GStore.flashMessage) clearTimeout(stopTimeout)
+  GStore.flashMessage = 'You are successfully registered for ' + event.title
+
   router.push({
     name: 'EventDetails'
   })
