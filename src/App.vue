@@ -1,25 +1,47 @@
 <script setup>
 import {RouterLink, RouterView} from 'vue-router'
+import UsefulRouterMethods from "@/components/UsefulRouterMethods.vue";
+import {inject, ref} from "vue";
 
+const GStore = inject('GStore')
+
+const isRouterMethodsShown = ref(false)
+const toggleRouterMethodsVisibility = () =>{
+  isRouterMethodsShown.value = !isRouterMethodsShown.value
+}
 </script>
 
 <template>
   <div id="layout">
     <header>
-
       <div class="wrapper">
-
+        <div class="flashMessage" v-if="GStore.flashMessage">{{GStore.flashMessage}}</div>
         <nav>
-          <RouterLink :to="{name: 'events'}">Events</RouterLink> |
-          <RouterLink :to="{name: 'about'}">About</RouterLink>
+          <RouterLink :to="{name: 'Events'}">Events</RouterLink> |
+          <RouterLink :to="{name: 'About'}">About</RouterLink>
         </nav>
+        <button @click="toggleRouterMethodsVisibility">show router methods</button>
+        <UsefulRouterMethods v-if="isRouterMethodsShown"></UsefulRouterMethods>
       </div>
     </header>
     <RouterView/>
+
   </div>
 </template>
 
 <style>
+@keyframes yellow-fade{
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+.flashMessage {
+  animation-name: yellow-fade;
+  animation-duration: 3s;
+}
 #layout{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
